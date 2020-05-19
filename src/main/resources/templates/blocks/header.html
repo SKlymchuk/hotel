@@ -8,13 +8,11 @@
             <a class="p-2 text-dark" href="/blog/add">Добавить статью</a>
             <a class="p-2 text-dark" href="/about">Про нас</a>
         </nav>
-        <a class="btn btn-outline-primary" href="/login">Login</a>
-        <a class="btn btn-outline-primary" href="/registration">Sign up</a>
+        <a class="btn btn-outline-primary" href="/login" th:text="#{button.sign_in}"></a>
+        <a class="btn btn-outline-primary" href="/registration" th:text="#{button.sign_up}"></a>
+
         <span th:text="#{lang.change}"></span>:
-        <select id="locales">
-            <option value=""></option>
-            <option value="en" th:text="#{lang.eng}"></option>
-            <option value="fr" th:text="#{lang.ua}"></option>
-        </select>
+        <a class="btn btn-outline-primary" href="?lang=en" th:text="#{lang.eng}"></a>
+        <a class="btn btn-outline-primary" href="?lang=ua" th:text="#{lang.ua}"></a>
     </div>
 </div>

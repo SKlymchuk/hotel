@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head>
     <title th:text="#{login}"></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -18,9 +18,9 @@
     <div th:if="${param.logout}" th:text="#{login.logout}"></div>
 
     <form name="f" th:action="@{/login}" method="post" onsubmit="return validate()">
-        <div><label> Username : <input type="text" name="username" class="form-control"/> </label></div>
-        <div><label> Password: <input type="password" name="password" class="form-control"/> </label></div>
-        <div><button name="submit" type="submit" class="btn btn-success" onclick="validate()">Sign In</button></div>
+        <div><label><div th:text="#{login}"></div> <input type="text" name="username" class="form-control"/> </label></div>
+        <div><label><div th:text="#{password}"></div> <input type="password" name="password" class="form-control"/> </label></div>
+        <div><button name="submit" type="submit" class="btn btn-success" th:text="#{button.sign_in}"></button></div>
     </form>
 </div>
 <a href="/registration">Registration</a>
