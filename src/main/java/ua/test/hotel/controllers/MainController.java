@@ -13,26 +13,26 @@ import java.util.Map;
 
 @Controller
 public class MainController {
+
+
     @Autowired
     private MessageRepo messageRepo;
 
     @GetMapping("/")
-    public String greeting(Model model)
-    {
+    public String greeting(Model model) {
         return "greeting";
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model)
-    {
+    public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
         return "main";
     }
 
+
     @PostMapping("/main")
-    public String add(@RequestParam String text, @RequestParam String tag, Model model)
-    {
+    public String add(@RequestParam String text, @RequestParam String tag, Model model) {
         Message message = new Message(text, tag);
 
         messageRepo.save(message);
@@ -42,13 +42,13 @@ public class MainController {
 
         return "main";
     }
+
     @PostMapping("/filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model){
+    public String filter(@RequestParam String filter, Map<String, Object> model) {
         Iterable<Message> filteredTag;
         if (filter != null && !filter.isEmpty()) {
             filteredTag = messageRepo.findByTag(filter);
-        }
-        else {
+        } else {
             filteredTag = messageRepo.findAll();
         }
         model.put("messages", filteredTag);

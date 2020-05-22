@@ -13,19 +13,19 @@ import java.util.Map;
 
 @Controller
 public class RegistrationController {
-    
+
     @Autowired
     private UserRepo userRepo;
-    
+
     @GetMapping("/registration")
-    public String registration(){
+    public String registration() {
         return "registration.html";
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model){
+    public String addUser(User user, Map<String, Object> model) {
         User userFromDB = userRepo.findByUsername(user.getUsername());
-        if (userFromDB != null){
+        if (userFromDB != null) {
             model.put("message", "User exists!");
             return "registration.html";
         }
