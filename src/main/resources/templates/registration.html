@@ -15,6 +15,11 @@
 <h1 th:text="#{registration.title}"></h1>
 <div class="container mt-5 mb-5">
 
+    <div th:each="el : ${message}" class="alert alert-info mt-2">
+        <div>
+            <b th:text="${el}"></b>
+        </div>
+    </div>
     <form action="/registration" method="post">
         <div><label>
             <div th:text="#{login}"></div>
