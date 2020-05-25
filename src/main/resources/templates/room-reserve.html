@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{page.title.order}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5 mb-5">
+    <h1 th:text="#{page.title.order}"></h1>
+    <div th:each="el : ${room}" class="alert alert-info mt-2">
+        <h3><b th:text="#{page.room.number}"></b> <span th:text="${el.number}"/></h3>
+        <p><b th:text="#{page.room.capacity}"></b> <span th:text="${el.capacity}"/></p>
+        <p><b th:text="#{page.room.type}"></b> <span th:text="${el.type}"/></p>
+        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
+        <form th:action="'/blog/' + ${el.id} + '/del'" method="post"><br>
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>
