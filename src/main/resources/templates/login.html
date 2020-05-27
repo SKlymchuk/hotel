@@ -5,32 +5,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/internationalization.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-<h1 th:text="#{greeting}"></h1>
+<h1 th:text="#{login}"></h1>
 
 <div class="container mt-5 mb-5">
-    <div th:if="${param.error}" th:text="#{login.error}"></div>
-    <div th:if="${param.logout}" th:text="#{login.logout}"></div>
+    <div class="alert alert-info mt-2" th:if="${param.error}" th:text="#{login.error}"></div>
+    <div class="alert alert-info mt-2" th:if="${param.logout}" th:text="#{login.logout}"></div>
 
-    <form name="f" th:action="@{/login}" method="post" onsubmit="return va;  lidate()">
+    <form name="f" th:action="@{/login}" method="post" onsubmit="return validate()">
         <div><label>
-            <div th:text="#{login}"></div>
-            <input type="text" name="username" class="form-control"/> </label></div>
+            <label th:text="#{login}" for="username"></label>
+            <input type="text" id="username" name="username" class="form-control"/> </label></div>
         <div><label>
-            <div th:text="#{password}"></div>
-            <input type="password" name="password" class="form-control"/> </label></div>
+            <label th:text="#{password}" for="password"></label>
+            <input type="password" id="password" name="password" class="form-control"/> </label></div>
         <div>
             <button name="submit" type="submit" class="btn btn-success" th:text="#{button.sign_in}"></button>
         </div>
     </form>
 </div>
-<a href="/registration">Registration</a>
-
-<div th:insert="blocks/footer :: footer"></div>
 
 <script type="text/javascript">
     function validate() {

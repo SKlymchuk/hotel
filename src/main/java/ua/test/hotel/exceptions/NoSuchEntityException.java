@@ -1,6 +1,6 @@
 package ua.test.hotel.exceptions;
 
-public class NoEntityException extends Exception {
+public class NoSuchEntityException extends Exception {
 
     long id;
 
@@ -8,7 +8,7 @@ public class NoEntityException extends Exception {
         return id;
     }
 
-    public NoEntityException(String message, long id) {
+    public NoSuchEntityException(String message, long id) {
         super(message + id);
         this.id = id;
     }

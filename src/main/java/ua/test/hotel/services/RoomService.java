@@ -1,6 +1,5 @@
 package ua.test.hotel.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.test.hotel.model.Room;
 import ua.test.hotel.model.Type;
@@ -12,8 +11,11 @@ import java.util.Optional;
 @Service
 public class RoomService {
 
-    @Autowired
-    private RoomRepo roomRepo;
+    private final RoomRepo roomRepo;
+
+    public RoomService(RoomRepo roomRepo) {
+        this.roomRepo = roomRepo;
+    }
 
     public List<Room> findAllRooms() {
         return roomRepo.findAll();
