@@ -14,10 +14,12 @@
         <h3><b th:text="#{page.room.number}"></b> <span th:text="${el.number}"/></h3>
         <p><b th:text="#{page.room.capacity}"></b> <span th:text="${el.capacity}"/></p>
         <p><b th:text="#{page.room.type}"></b> <span th:text="${el.type}"/></p>
-        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
-        <form th:method="post" action="">
-            <label for="date" th:text="#{page.room.date}"></label>
-            <input type="date" id="date" name="date">
+        <!--        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>-->
+        <form th:method="post" th:action="'/room/' + ${el.id}">
+            <label for="start_date" th:text="#{page.room.from_date}"></label>
+            <input type="date" id="start_date" name="startDate">
+            <label for="finish_date" th:text="#{page.room.finish_date}"></label>
+            <input type="date" id="finish_date" name="finishDate">
             <div>
                 <button name="submit" type="submit" class="btn btn-success" th:text="#{page.title.order}"></button>
             </div>

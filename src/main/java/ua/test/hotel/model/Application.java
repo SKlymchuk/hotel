@@ -1,5 +1,7 @@
 package ua.test.hotel.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,9 @@ import java.time.LocalDate;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "applications")
 public class Application {
 
     @Id
@@ -19,10 +24,11 @@ public class Application {
     private Room room;
 
     @ManyToOne()
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private LocalDate fromDate;
-    private LocalDate toDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
 
     //todo price,
 

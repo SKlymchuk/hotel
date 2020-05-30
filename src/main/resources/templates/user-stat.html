@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="#{main}"></title>
+    <title th:text="#{page.title.stat}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -11,24 +11,36 @@
     <h5 class="my-0 mr-md-auto font-weight-normal"><h1 th:inline="text">Hello
         [[${#httpServletRequest.remoteUser}]]!</h1></h5>
     <nav class="my-2 my-md-0 mr-md-3">
-
         <a class="p-2 text-dark" href="/">Главная</a>
     </nav>
-
-
     <a class="btn btn-outline-primary" href="/logout" th:text="#{button.logout}"></a>
 
     <span th:text="#{lang.change}"></span>:
     <a class="btn btn-outline-primary" href="?lang=en" th:text="#{lang.eng}"></a>
     <a class="btn btn-outline-primary" href="?lang=ua" th:text="#{lang.ua}"></a>
 </div>
+
 <h1 th:text="#{greeting.main}"></h1>
-<div th:each="el : ${roomsFromBD}" class="alert alert-info mt-2">
+<div th:each="el : ${message}" class="alert alert-info mt-2">
     <div>
-        <b th:text="${el.number}"></b>
-        <span th:text="${el.capacity}"></span>
-        <i th:text="${el.type}"></i><br><br>
-        <a th:href="'/room/' + ${el.id}" class="btn btn-warning" th:text="#{button.order}"></a>
+        <b th:text="${el}"></b>
+    </div>
+</div>
+
+<div th:each="el : ${applicationList}" class="alert alert-info mt-1">
+    <div>
+        <b th:text="${el.startDate}"></b>
+        <span th:text="${el.finishDate}"></span>
+        <i th:text="${el.user.username}"></i><br><br>
+        <i th:text="${el.room.number}"></i><br><br>
+        <i th:text="${el.room.type}"></i><br><br>
+        <i th:text="${el.room.capacity}"></i><br><br>
+
+        <form th:method="post" th:action="'/statistics/' + ${el.id} + '/del'">
+            <div>
+                <button name="submit" type="submit" class="btn btn-warning" th:text="#{button.delete}"></button>
+            </div>
+        </form>
     </div>
 </div>
 </body>
