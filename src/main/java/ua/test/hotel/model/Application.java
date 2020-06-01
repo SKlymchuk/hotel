@@ -30,6 +30,8 @@ public class Application {
     private LocalDate startDate;
     private LocalDate finishDate;
 
+    boolean approved = false;
+
     //todo price,
 
 

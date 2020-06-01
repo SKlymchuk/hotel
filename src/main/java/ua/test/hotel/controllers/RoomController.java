@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.test.hotel.config.UserDetailsImpl;
 import ua.test.hotel.exceptions.NoSuchEntityException;
 import ua.test.hotel.model.Room;
+import ua.test.hotel.model.RoomState;
 import ua.test.hotel.model.dto.ApplicationDTO;
 import ua.test.hotel.services.ApplicationService;
 import ua.test.hotel.services.RoomService;
@@ -34,7 +35,7 @@ public class RoomController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        Iterable<Room> rooms = roomService.findAllRooms();
+        Iterable<Room> rooms = roomService.showAvailableRooms();
         model.addAttribute("roomsFromBD", rooms);
         return "main";
     }
@@ -57,8 +58,13 @@ public class RoomController {
                                   Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Optional<Room> room = roomService.findById(id);
-        room.ifPresent(value -> applicationService.saveApplicationFromDTO(applicationDTO, value, userDetails.getUser()));
+        if (room.get().getRoomState().equals(RoomState.AVAILABLE)) {
+            room.ifPresent(value -> applicationService.saveApplicationFromDTO(applicationDTO, value, userDetails.getUser()));
+            room.get().setRoomState(RoomState.OCCUPIED);
+            roomService.save(room.get());
+        }
         return "redirect:/main";
+
     }
 
 /*

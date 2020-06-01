@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -20,13 +21,22 @@ public class Room {
 
     private int number;
     private int capacity;
+    private double price;
 
+    public Room(int number, int capacity, double price, RoomState roomState, Type type) {
+        this.capacity = capacity;
+        this.number = number;
+        this.price = price;
+        this.roomState = roomState;
+        this.type = type;
+    }
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private RoomState roomState;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    public Room(int number, int capacity, Type type) {
-        this.number = number;
-        this.capacity = capacity;
-        this.type = type;
-    }
 }

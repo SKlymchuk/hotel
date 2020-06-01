@@ -11,4 +11,5 @@ import java.util.List;
 public interface ApplicationRepo extends JpaRepository<Application, Long> {
     List<Application> findAllByUser(User user);
 
+    List<Application> findAllByApprovedIsTrue();
 }

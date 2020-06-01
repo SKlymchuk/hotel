@@ -11,7 +11,7 @@
     <h5 class="my-0 mr-md-auto font-weight-normal" th:inline="text">
         [[${#httpServletRequest.remoteUser}]]</h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="btn btn-outline-primary" href="/applications/approved" th:text="#{button.approve}"></a>
+        <a class="btn btn-outline-primary" href="/applications" th:text="#{button.no-approve}"></a>
     </nav>
     <a class="btn btn-outline-primary" href="/logout" th:text="#{button.logout}"></a>
 
@@ -31,12 +31,6 @@
         <i th:text="${el.room.type}"></i><br><br>
         <i th:text="${el.room.capacity}"></i><br><br>
 
-        <form th:action="'/applications/' + ${el.id} + '/approve'" th:method="post">
-            <button type="submit" class="btn btn-outline-primary" th:text="#{button.approve}"></button>
-        </form>
-        <form th:action="'/applications/' + ${el.id} + '/del'" th:method="post">
-            <button type="submit" class="btn btn-warning" th:text="#{button.delete}"></button>
-        </form>
     </div>
 </div>
 </body>

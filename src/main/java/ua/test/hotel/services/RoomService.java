@@ -2,6 +2,7 @@ package ua.test.hotel.services;
 
 import org.springframework.stereotype.Service;
 import ua.test.hotel.model.Room;
+import ua.test.hotel.model.RoomState;
 import ua.test.hotel.model.Type;
 import ua.test.hotel.repo.RoomRepo;
 
@@ -32,12 +33,21 @@ public class RoomService {
 //    @PostConstruct
 //    public void init(){
 //        List<Room> rooms = new ArrayList<>();
-//        rooms.add(new Room(11, 2, Type.ECONOMY));
-//        rooms.add(new Room(12, 3, Type.STANDARD));
-//        rooms.add(new Room(13, 4, Type.LUX));
-//        rooms.add(new Room(14, 1, Type.ECONOMY));
+//        rooms.add(new Room(11, 2, 25.5, RoomState.AVAILABLE, Type.ECONOMY));
+//        rooms.add(new Room(12, 3, 27.5, RoomState.AVAILABLE, Type.LUX));
+//        rooms.add(new Room(13, 4, 28.5, RoomState.AVAILABLE, Type.STANDARD));
+//        rooms.add(new Room(14, 5, 30.5, RoomState.AVAILABLE, Type.ECONOMY));
+//        rooms.add(new Room(15, 6, 38.5, RoomState.AVAILABLE, Type.LUX));
 //
 //
 //        roomRepo.saveAll(rooms);
 //    }
+
+    public List<Room> showAvailableRooms() {
+        return roomRepo.findByRoomState(RoomState.AVAILABLE);
+    }
+
+    public void save(Room room) {
+        roomRepo.save(room);
+    }
 }

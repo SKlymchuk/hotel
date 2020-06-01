@@ -10,11 +10,16 @@
 <header th:insert="blocks/header :: header"></header>
 
 <h1>
-    <div class="container mt-5">Hello, user</div>
+    <div class="container mt-5" th:text="#{greeting}"></div>
 </h1>
+<div class="container mt-5">
+    Система Заказ гостиницы. Клиент заполняет Заявку, указывая
+    количество мест в номере, класс апартаментов и время пребывания.
+    Администратор просматривает поступившую Заявку, выделяет наиболее
+    подходящий из доступных Номеров, после чего система выставляет Счет
+    Клиенту
+</div>
 
-<div class="container mt-5"><a href="/main">Main page</a></div>
 
-<footer th:insert="blocks/footer :: footer"></footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package ua.test.hotel.services;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.test.hotel.model.Role;
@@ -28,7 +29,7 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public void signUp(UserDTO userDTO) {
+    public void signUp(@NotNull UserDTO userDTO) {
         String hashPassword = passwordEncoder.encode(userDTO.getPassword());
         User user = User.builder()
                 .username(userDTO.getUsername())
@@ -39,4 +40,12 @@ public class UserService {
 
         saveUser(user);
     }
+
+    public UserDTO toDTO(@NotNull User user) {
+        return UserDTO.builder()
+                .username(user.getUsername())
+//                .cashAccount(user.getCashAccount())
+                .build();
+    }
+
 }
